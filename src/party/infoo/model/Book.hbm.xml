@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="party.infoo.model">
+
+	<class name="Book" table="t_book">
+		<id name="bookId" column="bookId">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="bookName" column="bookName"></property>
+		<property name="bookAuthor" column="bookAuthor"></property>
+		<property name="bookPrice" column="bookPrice" type="float">
+		</property>
+		<many-to-one name="bookType" column="bookTypeId" class="party.infoo.model.BookType" cascade="save-update"></many-to-one>
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="party.infoo.model">
+
+	<class name="BookType" table="t_bookType">
+		<id name="bookTypeId" column="bookTypeId">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="bookTypeName" column="bookTypeName"></property>
+
+		<!-- 图书类别是一，图书是多 -->
+		<set name="books" inverse="true">
+			<key column="bookTypeId"></key>
+			<one-to-many class="party.infoo.model.Book" />
+		</set>
+	</class>
+
+</hibernate-mapping>

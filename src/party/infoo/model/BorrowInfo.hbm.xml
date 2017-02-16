@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="party.infoo.model">
+
+	<class name="BorrowInfo" table="t_BorrowInfo">
+		<id name="infoId" column="infoId">
+			<generator class="native">
+			</generator>
+		</id>
+        <property name="userId" column="userId"></property>
+		<property name="bookId" column="bookId"></property>
+
+	</class>
+
+</hibernate-mapping>

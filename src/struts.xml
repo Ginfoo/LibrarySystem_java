@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+      
+<struts>
+   <!--后缀用action -->  
+    <constant name="struts.action.extension" value="action" />  
+      
+    <package name="infoo" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor name="loginInterceptor" class="party.infoo.interceptor.LoginInterceptor"></interceptor>
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="loginInterceptor"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+            <interceptor name="loginedInterceptor" class="party.infoo.interceptor.LoginedInterceptor"></interceptor>
+        </interceptors>
+        <global-results>
+            <result name="error_noLogin">index.jsp</result>
+        </global-results>
+        <action name="user_login" method="login" class="party.infoo.action.UserAction">
+            <result name="success">/main.jsp</result>
+            <result name="error">/index.jsp</result>
+            <interceptor-ref name="loginedInterceptor"></interceptor-ref>
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+        </action>
+        <!--使用通配符匹配Action-->
+    	<action name="user_*" method="{1}" class="party.infoo.action.UserAction">
+    		<result name="success">/main.jsp</result>
+    		<result name="error">/main.jsp</result>
+            <interceptor-ref name="myStack"></interceptor-ref>
+    	</action>
+        <action name="book_*" method="{1}" class="party.infoo.action.BookAction">
+            <result name="success">/main.jsp</result>
+            <result name="error">/main.jsp</result>
+            <interceptor-ref name="myStack"></interceptor-ref>
+        </action>
+        <action name="book_submit"  class="party.infoo.action.BookAction">
+            <result name="success">/main.jsp</result>
+            <result name="error">/main.jsp</result>
+            <interceptor-ref name="myStack"></interceptor-ref>
+        </action>
+        <action name="bookType_*" method="{1}" class="party.infoo.action.BookTypeAction">
+            <result name="success">/main.jsp</result>
+            <result name="error">/main.jsp</result>
+            <interceptor-ref name="myStack"></interceptor-ref>
+        </action>
+    </package>
+
+      
+</struts>   
